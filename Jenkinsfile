@@ -9,20 +9,20 @@ pipeline {
         stage('Checkout Source Code and Logging Into Registry') {
             steps {
                 echo 'Logging Into the Private ECR Registry'
-                /* script {
+                 script {
                     GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
-                    ACCOUNT_REGISTRY_PREFIX = "089778365617.dkr.ecr.us-east-1.amazonaws.com"
+                    ACCOUNT_REGISTRY_PREFIX = "772955835118.dkr.ecr.us-east-1.amazonaws.com"
                     sh """
                     \$(aws ecr get-login --no-include-email --region us-east-1)
                     """
-                } */
+                }
             }
         }
 
         stage('Make A Builder Image') {
             steps {
                 echo 'Starting to build the project builder docker image'
-                /* script {
+                script {
                     builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                     builderImage.push()
                     builderImage.push("${env.GIT_BRANCH}")
@@ -32,7 +32,7 @@ pipeline {
                            lein uberjar
                         """
                     }
-                } */
+                }
             }
         }
 
