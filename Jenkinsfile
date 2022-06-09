@@ -35,22 +35,22 @@ pipeline {
                 }
             }
         }
-
+/*
         stage('Unit Tests') {
             steps {
                 echo 'running unit tests in the builder image.'
-                /* script {
+                script {
                     builderImage.inside('-v $WORKSPACE:/output -u root') {
                     sh """
                        cd /output
                        lein test
                     """
                     }
-                } */
+                }
             }
         }
 
-        /*stage('Build Production Image') {
+        stage('Build Production Image') {
             steps {
                 echo 'Starting to build docker image'
                 script {
@@ -61,7 +61,7 @@ pipeline {
             }
         }
 
- 
+        
         stage('Deploy to Production fixed server') {
             when {
                 branch 'release'
