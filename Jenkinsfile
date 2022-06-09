@@ -11,31 +11,31 @@ pipeline {
                 echo 'Logging Into the Private ECR Registry'
                  script {
                     GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
-                    ACCOUNT_REGISTRY_PREFIX = "772955835118.dkr.ecr.us-east-1.amazonaws.com"
+                    /*ACCOUNT_REGISTRY_PREFIX = "772955835118.dkr.ecr.us-east-1.amazonaws.com"
                     sh """
                     \$(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 772955835118.dkr.ecr.us-east-1.amazonaws.com)
-                    """
+                    """*/
                 }
             }
         }
-
+ /*
        stage('Make A Builder Image') {
             steps {
                 echo 'Starting to build the project builder docker image'
                 script {
                     builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
-                    /*builderImage.push()
+                    builderImage.push()
                     builderImage.push("${env.GIT_BRANCH}")
                     builderImage.inside('-v $WORKSPACE:/work -u root') {
                         sh """
                            cd /work
                            lein uberjar
                         """
-                    }*/
+                    }
                 }
             }
         }
- /*
+
         stage('Unit Tests') {
             steps {
                 echo 'running unit tests in the builder image.'
