@@ -19,23 +19,23 @@ pipeline {
             }
         }
 
-      /*  stage('Make A Builder Image') {
+       stage('Make A Builder Image') {
             steps {
                 echo 'Starting to build the project builder docker image'
                 script {
                     builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                     builderImage.push()
                     builderImage.push("${env.GIT_BRANCH}")
-                    builderImage.inside('-v $WORKSPACE:/output -u root') {
+                    builderImage.inside('-v $WORKSPACE:/work -u root') {
                         sh """
-                           cd /output
+                           cd /work
                            lein uberjar
                         """
                     }
                 }
             }
         }
-
+ /*
         stage('Unit Tests') {
             steps {
                 echo 'running unit tests in the builder image.'
