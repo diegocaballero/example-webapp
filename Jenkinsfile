@@ -18,7 +18,7 @@ pipeline {
                 }
             }
         }
- 
+ /*
        stage('Make A Builder Image') {
             steps {
                 echo 'Starting to build the project builder docker image'
@@ -35,7 +35,7 @@ pipeline {
                 }
             }
         }
-/*
+
         stage('Unit Tests') {
             steps {
                 echo 'running unit tests in the builder image.'
