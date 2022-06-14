@@ -1,4 +1,4 @@
-Hello friend
+Otro Hello friend
 # example-webapp
 
 generated using Luminus version "2.9.12.25"
